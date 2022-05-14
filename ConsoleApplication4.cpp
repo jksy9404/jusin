@@ -1,4 +1,4 @@
-// ConsoleApplication4.cpp : ÄÜ¼Ö ÀÀ¿ë ÇÁ·Î±×·¥¿¡ ´ëÇÑ ÁøÀÔÁ¡À» Á¤ÀÇÇÕ´Ï´Ù.
+// ConsoleApplication4.cpp : ì½˜ì†” ì‘ìš© í”„ë¡œê·¸ë¨ì— ëŒ€í•œ ì§„ì…ì ì„ ì •ì˜í•©ë‹ˆë‹¤.
 //
 
 #include "stdafx.h"
@@ -6,8 +6,11 @@
 
 int main()
 {
-	int = 0;
-	string ni = "face";
+
+	int a = 12;
+
+
+
     return 0;
 }
 
