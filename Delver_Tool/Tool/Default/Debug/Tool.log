@@ -1,0 +1,12 @@
+﻿  main.cpp
+  imgui_widgets.cpp
+  imgui_tables.cpp
+  imgui_impl_win32.cpp
+  imgui_impl_dx9.cpp
+  imgui_draw.cpp
+  imgui_demo.cpp
+  imgui.cpp
+  코드를 생성하고 있습니다...
+MSVCRTD.lib(exe_winmain.obj) : error LNK2019: _WinMain@16 외부 기호(참조 위치: "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ) 함수)에서 확인하지 못했습니다.
+../../Reference/Librarys/\Engine.lib : warning LNK4272: 'x64' 라이브러리 컴퓨터 종류가 'X86' 대상 컴퓨터 종류와 충돌합니다.
+..\Bin\Tool.exe : fatal error LNK1120: 1개의 확인할 수 없는 외부 참조입니다.

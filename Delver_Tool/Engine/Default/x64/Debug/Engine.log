@@ -3,12 +3,12 @@
   Timer_Manager.cpp
   Timer.cpp
   Texture.cpp
-c:\users\khk\desktop\취업\쥬신\5개월 sr2\delver_tool\engine\public\texture.h(25): warning C4251: 'Engine::CTexture::m_Textures': class 'std::vector<LPDIRECT3DBASETEXTURE9,std::allocator<_Ty>>'에서는 class 'Engine::CTexture'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+c:\users\khk\desktop\취업\쥬신\5개월 sr2\jusin\delver_tool\engine\public\texture.h(25): warning C4251: 'Engine::CTexture::m_Textures': class 'std::vector<LPDIRECT3DBASETEXTURE9,std::allocator<_Ty>>'에서는 class 'Engine::CTexture'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
           with
           [
               _Ty=LPDIRECT3DBASETEXTURE9
           ]
-  c:\users\khk\desktop\취업\쥬신\5개월 sr2\delver_tool\engine\public\texture.h(25): note: 'std::vector<LPDIRECT3DBASETEXTURE9,std::allocator<_Ty>>' 선언을 참조하십시오.
+  c:\users\khk\desktop\취업\쥬신\5개월 sr2\jusin\delver_tool\engine\public\texture.h(25): note: 'std::vector<LPDIRECT3DBASETEXTURE9,std::allocator<_Ty>>' 선언을 참조하십시오.
           with
           [
               _Ty=LPDIRECT3DBASETEXTURE9
@@ -26,5 +26,5 @@ c:\users\khk\desktop\취업\쥬신\5개월 sr2\delver_tool\engine\public\texture
   Base.cpp
   코드를 생성하고 있습니다...
      ..\Bin\Engine.lib 라이브러리 및 ..\Bin\Engine.exp 개체를 생성하고 있습니다.
-  Engine.vcxproj -> C:\Users\KHK\Desktop\취업\쥬신\5개월 SR2\Delver_Tool\Engine\Default\..\Bin\Engine.dll
+  Engine.vcxproj -> C:\Users\KHK\Desktop\취업\쥬신\5개월 SR2\jusin\Delver_Tool\Engine\Default\..\Bin\Engine.dll
   Engine.vcxproj -> ..\Bin\Engine.pdb (Full PDB)
