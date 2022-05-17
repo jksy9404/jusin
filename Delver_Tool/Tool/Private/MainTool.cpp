@@ -31,6 +31,9 @@ HRESULT CMainTool::NativeConstruct()
 	if (FAILED(Ready_Prototype_Component_Static()))
 		return E_FAIL;
 
+	if (FAILED(m_pImgui_Manager->NativeConstruct(m_pGraphic_Device)))
+		return E_FAIL;
+
 
 
 	return S_OK;
@@ -42,22 +45,15 @@ void CMainTool::Tick(float fTimeDelta)
 		return;
 
 	m_pGameInstance->Tick_Engine(fTimeDelta);
-
-	m_pImgui_Manager->Tick();
 }
 
 HRESULT CMainTool::Render()
 {
 	if (nullptr == m_pGameInstance)
 		return E_FAIL;
-
-	//m_pGameInstance->Render_Begin();
-
-	//m_pGameInstance->Render_Engine();
-
-	//m_pGameInstance->Render_End();
-
-	_float4x4		WorldMatrix, ViewMatrix, ProjMatrix;
+	m_pGameInstance->Render_Begin();
+	
+	/*_float4x4		WorldMatrix, ViewMatrix, ProjMatrix;
 
 	D3DXMatrixIdentity(&WorldMatrix);
 	m_pGraphic_Device->SetTransform(D3DTS_WORLD, &WorldMatrix);
@@ -70,7 +66,16 @@ HRESULT CMainTool::Render()
 
 	m_pTextureCom->Bind_Texture(0);
 
-	m_pVIBufferCom->Render();
+	m_pVIBufferCom->Render();*/
+
+
+	m_pImgui_Manager->BeginRender();
+
+	// 여기서 Imgui 코드 호출해주면 됨
+	ImGui::ShowDemoWindow();
+	m_pImgui_Manager->EndRender();
+
+	m_pGameInstance->Render_End();
 
 	return S_OK;
 }
@@ -143,10 +148,12 @@ void CMainTool::Free()
 	Safe_Release(m_pGameInstance);
 
 	Safe_Release(m_pGraphic_Device);
-
-	CGameInstance::Release_Engine();
-
+	
 	Safe_Release(m_pImgui_Manager);
 
 	CImgui_Manager::Destroy_Instance();
+
+	CGameInstance::Release_Engine();
+
+	
 }

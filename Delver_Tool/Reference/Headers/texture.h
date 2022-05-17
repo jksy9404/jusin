@@ -21,6 +21,8 @@ public:
 
 	HRESULT	Bind_Texture(_uint iIndex);
 
+	LPDIRECT3DBASETEXTURE9	Get_Texture() { return m_Textures.front(); }
+
 private:
 	vector<LPDIRECT3DBASETEXTURE9>			m_Textures;
 	typedef vector<LPDIRECT3DBASETEXTURE9>	TEXTURES;
