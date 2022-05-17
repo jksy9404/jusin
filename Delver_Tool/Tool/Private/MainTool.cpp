@@ -53,7 +53,7 @@ HRESULT CMainTool::Render()
 		return E_FAIL;
 	m_pGameInstance->Render_Begin();
 	
-	/*_float4x4		WorldMatrix, ViewMatrix, ProjMatrix;
+	_float4x4		WorldMatrix, ViewMatrix, ProjMatrix;
 
 	D3DXMatrixIdentity(&WorldMatrix);
 	m_pGraphic_Device->SetTransform(D3DTS_WORLD, &WorldMatrix);
@@ -66,13 +66,17 @@ HRESULT CMainTool::Render()
 
 	m_pTextureCom->Bind_Texture(0);
 
-	m_pVIBufferCom->Render();*/
+	m_pVIBufferCom->Render();
 
 
 	m_pImgui_Manager->BeginRender();
 
 	// 여기서 Imgui 코드 호출해주면 됨
 	ImGui::ShowDemoWindow();
+	Img_Test();
+
+	// ================================ 
+
 	m_pImgui_Manager->EndRender();
 
 	m_pGameInstance->Render_End();
@@ -123,6 +127,40 @@ HRESULT CMainTool::Ready_Prototype_Component_Static()
 		return E_FAIL;
 
 	return S_OK;
+}
+
+
+void CMainTool::Img_Test()
+{
+	int my_image_width = 0;
+	int my_image_height = 0;
+	LPDIRECT3DTEXTURE9 my_texture = NULL;
+	bool ret = LoadTextureFromFile("../Bin/Resources/MyImage01.jpg", &my_texture, &my_image_width, &my_image_height);
+	IM_ASSERT(ret);
+	ImGui::Begin("DirectX9 Texture Test");
+	ImGui::Text("pointer = %p", my_texture);
+	ImGui::Text("size = %d x %d", my_image_width, my_image_height);
+
+	float x = 0.f;
+	ImGui::DragFloat("X Pos", &x);
+	ImGui::Image((void*)my_texture, ImVec2((float)my_image_width, (float)my_image_height));
+	ImGui::End();
+}
+
+bool CMainTool::LoadTextureFromFile(const char * filename, LPDIRECT3DTEXTURE9 * out_texture, int * out_width, int * out_height)
+{
+	LPDIRECT3DTEXTURE9 texture;
+	HRESULT hr = D3DXCreateTextureFromFileA(m_pGraphic_Device, filename, &texture);
+	if (hr != S_OK)
+		return false;
+
+	// Retrieve description of the texture surface so we can access its size
+	D3DSURFACE_DESC my_image_desc;
+	texture->GetLevelDesc(0, &my_image_desc);
+	*out_texture = texture;
+	*out_width = (int)my_image_desc.Width;
+	*out_height = (int)my_image_desc.Height;
+	return true;
 }
 
 CMainTool * CMainTool::Create()

@@ -28,7 +28,6 @@ private:
 	LPDIRECT3DDEVICE9			m_pGraphic_Device = nullptr;
 	CImgui_Manager*				m_pImgui_Manager = nullptr;
 
-
 	/*¸ðµ¨*/
 	CVIBuffer_Rect*			m_pVIBufferCom = nullptr;
 
@@ -38,6 +37,9 @@ private:
 private:
 	HRESULT Ready_RenderState();
 	HRESULT Ready_Prototype_Component_Static();
+
+	void Img_Test();
+	bool LoadTextureFromFile(const char* filename, PDIRECT3DTEXTURE9* out_texture, int* out_width, int* out_height);
 
 public:
 	static CMainTool* Create();
