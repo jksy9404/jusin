@@ -10,8 +10,6 @@ CExample::CExample()
 
 CExample::~CExample()
 {
-	
-
 	Safe_Release(texture);
 
 	Safe_Release(my_texture);
@@ -45,7 +43,7 @@ void CExample::Render()
 		//이미지 띄우기
 		 CreateImg();
 		//이미지버튼 생성
-	//	CreateImageButton();
+		CreateImageButton();
 
 	}
 }
@@ -85,12 +83,7 @@ void CExample::CreateSpapes()
 void CExample::CreateImg()
 {
 	ImGui::Begin("Image");
-	int my_image_width = 0;
-	int my_image_height = 0;
-	//LPDIRECT3DTEXTURE9 my_texture = NULL;
-	bool ret = LoadTextureFromFile("../Bin/Resources/MyImage01.jpg", &my_texture, &my_image_width, &my_image_height);
-	IM_ASSERT(ret);
-	//ImGui::Text("pointer = %p", my_texture);
+
 	ImGui::Text("size = %.2f x %.2f", my_image_width * 0.5f, my_image_height * 0.5f);
 
 	float x = 0.f;

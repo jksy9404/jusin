@@ -1,2 +1,30 @@
-﻿  Engine.vcxproj -> D:\1_jusin\1.팀플\5회차 SR\새 폴더\Delver_Tool\Engine\Default\..\Bin\Engine.dll
+﻿  VIBuffer_Rect.cpp
+  VIBuffer.cpp
+  Timer_Manager.cpp
+  Timer.cpp
+  Texture.cpp
+d:\srteam\jusin\delver_tool\engine\public\texture.h(25): warning C4251: 'Engine::CTexture::m_Textures': class 'std::vector<LPDIRECT3DBASETEXTURE9,std::allocator<_Ty>>'에서는 class 'Engine::CTexture'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+          with
+          [
+              _Ty=LPDIRECT3DBASETEXTURE9
+          ]
+  d:\srteam\jusin\delver_tool\engine\public\texture.h(25): note: 'std::vector<LPDIRECT3DBASETEXTURE9,std::allocator<_Ty>>' 선언을 참조하십시오.
+          with
+          [
+              _Ty=LPDIRECT3DBASETEXTURE9
+          ]
+  Renderer.cpp
+  Object_Manager.cpp
+  Level_Manager.cpp
+  Level.cpp
+  Layer.cpp
+  Graphic_Device.cpp
+  GameObject.cpp
+  GameInstance.cpp
+  Component_Manager.cpp
+  Component.cpp
+  Base.cpp
+  코드를 생성하고 있습니다...
+     ..\Bin\Engine.lib 라이브러리 및 ..\Bin\Engine.exp 개체를 생성하고 있습니다.
+  Engine.vcxproj -> D:\SRTeam\jusin\Delver_Tool\Engine\Default\..\Bin\Engine.dll
   Engine.vcxproj -> ..\Bin\Engine.pdb (Full PDB)

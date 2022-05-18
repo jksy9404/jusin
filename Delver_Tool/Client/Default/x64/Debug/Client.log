@@ -1,2 +1,31 @@
-﻿  Client.vcxproj -> D:\1_jusin\1.팀플\5회차 SR\새 폴더\Delver_Tool\Client\Default\..\Bin\Client.exe
+﻿  stdafx.cpp
+  Client.cpp
+  MainApp.cpp
+  Loader.cpp
+d:\srteam\jusin\delver_tool\reference\headers\texture.h(27): warning C4251: 'Engine::CTexture::m_Textures': class 'std::vector<LPDIRECT3DBASETEXTURE9,std::allocator<_Ty>>'에서는 class 'Engine::CTexture'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+          with
+          [
+              _Ty=LPDIRECT3DBASETEXTURE9
+          ]
+  d:\srteam\jusin\delver_tool\reference\headers\texture.h(27): note: 'std::vector<LPDIRECT3DBASETEXTURE9,std::allocator<_Ty>>' 선언을 참조하십시오.
+          with
+          [
+              _Ty=LPDIRECT3DBASETEXTURE9
+          ]
+  Level_Logo.cpp
+  Level_Loading.cpp
+  Level_GamePlay.cpp
+  BackGround.cpp
+d:\srteam\jusin\delver_tool\reference\headers\texture.h(27): warning C4251: 'Engine::CTexture::m_Textures': class 'std::vector<LPDIRECT3DBASETEXTURE9,std::allocator<_Ty>>'에서는 class 'Engine::CTexture'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+          with
+          [
+              _Ty=LPDIRECT3DBASETEXTURE9
+          ]
+  d:\srteam\jusin\delver_tool\reference\headers\texture.h(27): note: 'std::vector<LPDIRECT3DBASETEXTURE9,std::allocator<_Ty>>' 선언을 참조하십시오.
+          with
+          [
+              _Ty=LPDIRECT3DBASETEXTURE9
+          ]
+  코드를 생성하고 있습니다...
+  Client.vcxproj -> D:\SRTeam\jusin\Delver_Tool\Client\Default\..\Bin\Client.exe
   Client.vcxproj -> ..\Bin\Client.pdb (Full PDB)
