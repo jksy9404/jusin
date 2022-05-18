@@ -19,6 +19,7 @@ public:
 	void CreateSpapes();
 	void CreateImg();
 	void CreateImageButton();
+	void GetMousePos();
 	bool LoadTextureFromFile(const char* filename, PDIRECT3DTEXTURE9* out_texture, int* out_width, int* out_height);
 
 private:

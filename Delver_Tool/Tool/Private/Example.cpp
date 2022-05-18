@@ -41,9 +41,11 @@ void CExample::Render()
 		//원그리기
 		CreateSpapes();
 		//이미지 띄우기
-		 CreateImg();
+		CreateImg();
 		//이미지버튼 생성
 		CreateImageButton();
+		//마우스 위치 얻기
+		GetMousePos();
 
 	}
 }
@@ -51,6 +53,9 @@ void CExample::Render()
 void CExample::CreateSpapes()
 {
 	ImGui::Begin("Draw Spapes");
+	
+	ImVec2 mainViewCenterPos = ImGui::GetMainViewport()->GetCenter();
+	
 	ImGui::Text("< Draw Circle >");
 	ImGui::Checkbox("Circle fov", &Circlefov);
 	ImGui::SliderFloat("Circle size", &Circlesize, 0, 500, "%.3f size");
@@ -59,14 +64,14 @@ void CExample::CreateSpapes()
 	ImGui::SliderFloat("Rect size", &Rectsize, 0, 500, "%.3f size");
 
 	ImGui::End();
-
+	
 	if (Circlefov)
 	{
 		ImGui::Begin("Circle", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize |
 			ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoScrollbar);
 
 		auto draw = ImGui::GetBackgroundDrawList();
-		draw->AddCircle(ImVec2(g_iWinSizeX / 2, g_iWinSizeY / 2), Circlesize, IM_COL32(255, 0, 0, 255), 100, 1.0f);
+		draw->AddCircle(ImVec2(ImGui::GetMainViewport()->GetCenter().x , ImGui::GetMainViewport()->GetCenter().y ), Circlesize, IM_COL32(255, 0, 0, 255), 100, 1.0f);
 		ImGui::End();
 	}
 	if (Rectfov)
@@ -75,7 +80,7 @@ void CExample::CreateSpapes()
 			ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoScrollbar);
 
 		auto draw = ImGui::GetBackgroundDrawList();
-		draw->AddRect(ImVec2(g_iWinSizeX / 2 - Rectsize, g_iWinSizeY / 2 - Rectsize) , ImVec2(g_iWinSizeX / 2 + Rectsize, g_iWinSizeY / 2 + Rectsize), IM_COL32(255, 0, 0, 255));
+		draw->AddRect(ImVec2(mainViewCenterPos.x - Rectsize, mainViewCenterPos.y - Rectsize) , ImVec2(mainViewCenterPos.x + Rectsize, mainViewCenterPos.y + Rectsize), IM_COL32(255, 0, 0, 255));
 		ImGui::End();
 	}
 }
@@ -83,7 +88,7 @@ void CExample::CreateSpapes()
 void CExample::CreateImg()
 {
 	ImGui::Begin("Image");
-
+	ImGui::Text("< Show Image >");
 	ImGui::Text("size = %.2f x %.2f", my_image_width * 0.5f, my_image_height * 0.5f);
 
 	float x = 0.f;
@@ -94,7 +99,6 @@ void CExample::CreateImg()
 
 void CExample::CreateImageButton()
 {
-	
 	ImGui::Begin("Image");
 
 	ImGui::Text("< Create ImageButton >");
@@ -102,7 +106,36 @@ void CExample::CreateImageButton()
 	if (ImGui::ImageButton((void*)my_texture, ImVec2((float)my_image_width * 0.5f, (float)my_image_height* 0.5f)))
 		imageButtonClick_Count++;
 
-	ImGui::Text("clickCount = %d", imageButtonClick_Count);
+	ImGui::Text("ClickCount = %d", imageButtonClick_Count);
+
+	ImGui::End();
+}
+
+void CExample::GetMousePos()
+{
+	ImGui::Begin("Get MousePos");
+
+	//ImVec2 mousePos = ImGui::GetMousePos();
+	//ImVec2 mousePos = ImGui::GetMousePosOnOpeningCurrentPopup();
+	//ImGuiIO& io = ImGui::GetIO();
+
+	ImVec2  screenMousePos = ImGui::GetMousePosOnOpeningCurrentPopup();
+	ImVec2 mainViewPos = ImGui::GetMainViewport()->Pos;
+	//벡터연산이안되네,,
+	float getDistance_x = fabs(screenMousePos.x - mainViewPos.x);
+	float getDistance_y = fabs(screenMousePos.y - mainViewPos.y);
+
+	//io.MousePos.x;
+	//ImGui::GetCursorScreenPos().x
+	//ImGui::GetMousePosOnOpeningCurrentPopup()
+	//ImGui::Text("x : %1.f, y : %1.f", mousePos.x , mousePos.y);
+	ImGui::Text("mainViewPos_x : %1.f, mainViewPos_y : %1.f", mainViewPos.x, mainViewPos.y);
+	ImGui::Text("screenMousePos_x : %1.f, screenMousePos_y : %1.f", screenMousePos.x, screenMousePos.y);
+
+	ImGui::Text("getDistance_x : %1.f, getDistance_y : %1.f", getDistance_x, getDistance_y);
+
+	ImGui::Text("MainViewMousePos_x : %1.f", screenMousePos.x - mainViewPos.x);
+	ImGui::Text("MainViewMousePos_y : %1.f", screenMousePos.y - mainViewPos.y);
 
 	ImGui::End();
 }
@@ -111,7 +144,6 @@ void CExample::CreateImageButton()
 
 bool CExample::LoadTextureFromFile(const char * filename, PDIRECT3DTEXTURE9 * out_texture, int * out_width, int * out_height)
 {
-	
 	HRESULT hr = D3DXCreateTextureFromFileA(m_pGraphic_Device, filename, &texture);
 	if (hr != S_OK)
 		return false;

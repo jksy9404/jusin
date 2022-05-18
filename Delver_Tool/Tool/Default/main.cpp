@@ -9,6 +9,8 @@
 
 #include "MainTool.h"
 
+
+
 // Data
 HWND						g_hWnd;
 
@@ -37,6 +39,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 	// Initialize Direct3D
 	CMainTool*	pMainTool = CMainTool::Create();
+	
 	if (nullptr == pMainTool)
 	{
 		Safe_Release(pMainTool);
@@ -155,7 +158,10 @@ LRESULT WINAPI WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			//const int dpi = HIWORD(wParam);
 			//printf("WM_DPICHANGED to %d (%.0f%%)\n", dpi, (float)dpi / 96.0f * 100.0f);
 			const RECT* suggested_rect = (RECT*)lParam;
+			//RECT rcWindow = { 0, 0, g_iWinSizeX, g_iWinSizeY };
 			::SetWindowPos(hWnd, NULL, suggested_rect->left, suggested_rect->top, suggested_rect->right - suggested_rect->left, suggested_rect->bottom - suggested_rect->top, SWP_NOZORDER | SWP_NOACTIVATE);
+			//::SetWindowPos(hWnd, NULL, rcWindow.left, rcWindow.top, rcWindow.right - rcWindow.left, rcWindow.bottom - rcWindow.top, SWP_NOZORDER | SWP_NOACTIVATE);
+
 		}
 		break;
 	}

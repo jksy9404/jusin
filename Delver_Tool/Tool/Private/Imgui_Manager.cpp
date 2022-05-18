@@ -12,6 +12,10 @@ HRESULT CImgui_Manager::NativeConstruct(LPDIRECT3DDEVICE9 pGraphic_Device)
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	/*
+	io.DisplaySize.x = g_iWinSizeX;
+	io.DisplaySize.y = g_iWinSizeY;*/
+
 
 	io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\malgun.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesKorean());
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
@@ -53,6 +57,7 @@ void CImgui_Manager::BeginRender()
 
 void CImgui_Manager::EndRender()
 {
+	
 	ImGui::Render();
 	ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
 

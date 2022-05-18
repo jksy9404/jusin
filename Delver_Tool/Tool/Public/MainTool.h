@@ -46,6 +46,7 @@ public:
 	static CMainTool* Create();
 	virtual void Free() override;
 
+
 private:
 	CExample* m_Example = nullptr;
 };

@@ -1,33 +1,33 @@
 ﻿  VIBuffer_Rect.cpp
-c:\users\khk\desktop\취업\쥬신\5개월 sr2\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
+d:\srteam\jusin\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
   VIBuffer.cpp
-c:\users\khk\desktop\취업\쥬신\5개월 sr2\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
+d:\srteam\jusin\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
   Timer_Manager.cpp
-c:\users\khk\desktop\취업\쥬신\5개월 sr2\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
+d:\srteam\jusin\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
   Timer.cpp
-c:\users\khk\desktop\취업\쥬신\5개월 sr2\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
+d:\srteam\jusin\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
   Texture.cpp
-c:\users\khk\desktop\취업\쥬신\5개월 sr2\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
+d:\srteam\jusin\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
   Renderer.cpp
-c:\users\khk\desktop\취업\쥬신\5개월 sr2\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
+d:\srteam\jusin\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
   Object_Manager.cpp
-c:\users\khk\desktop\취업\쥬신\5개월 sr2\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
+d:\srteam\jusin\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
   Level_Manager.cpp
-c:\users\khk\desktop\취업\쥬신\5개월 sr2\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
+d:\srteam\jusin\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
   Level.cpp
-c:\users\khk\desktop\취업\쥬신\5개월 sr2\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
+d:\srteam\jusin\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
   Layer.cpp
-c:\users\khk\desktop\취업\쥬신\5개월 sr2\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
+d:\srteam\jusin\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
   Graphic_Device.cpp
-c:\users\khk\desktop\취업\쥬신\5개월 sr2\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
+d:\srteam\jusin\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
   GameObject.cpp
-c:\users\khk\desktop\취업\쥬신\5개월 sr2\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
+d:\srteam\jusin\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
   GameInstance.cpp
-c:\users\khk\desktop\취업\쥬신\5개월 sr2\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
+d:\srteam\jusin\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
   Component_Manager.cpp
-c:\users\khk\desktop\취업\쥬신\5개월 sr2\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
+d:\srteam\jusin\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
   Component.cpp
-c:\users\khk\desktop\취업\쥬신\5개월 sr2\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
+d:\srteam\jusin\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
   Base.cpp
-c:\users\khk\desktop\취업\쥬신\5개월 sr2\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
+d:\srteam\jusin\delver_tool\engine\public\engine_defines.h(6): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx9.h': No such file or directory
   코드를 생성하고 있습니다...
