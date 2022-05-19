@@ -16,6 +16,12 @@
     <Filter Include="01. Imgui_Manager">
       <UniqueIdentifier>{b37e9c44-467e-447c-a0e4-7cfb312068bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. GameObjects">
+      <UniqueIdentifier>{1a145d79-5c9d-4f0e-8569-cc18da016c21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="98. Default\ImGuiFileDialog">
+      <UniqueIdentifier>{f81222d2-a6e5-45ff-8c63-134acd9f6218}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="imconfig.h">
@@ -51,6 +57,24 @@
     <ClInclude Include="..\Public\Imgui_Manager.h">
       <Filter>01. Imgui_Manager</Filter>
     </ClInclude>
+    <ClInclude Include="..\Public\BackGround.h">
+      <Filter>02. GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiFileDialog\ImGuiFileDialog.h">
+      <Filter>98. Default\ImGuiFileDialog</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiFileDialog\ImGuiFileDialogConfig.h">
+      <Filter>98. Default\ImGuiFileDialog</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiFileDialog\dirent\dirent.h">
+      <Filter>98. Default\ImGuiFileDialog</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiFileDialog\stb\stb_image_resize.h">
+      <Filter>98. Default\ImGuiFileDialog</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGuiFileDialog\stb\stb_image.h">
+      <Filter>98. Default\ImGuiFileDialog</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -82,6 +106,12 @@
     </ClCompile>
     <ClCompile Include="..\Private\Imgui_Manager.cpp">
       <Filter>01. Imgui_Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Private\BackGround.cpp">
+      <Filter>02. GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGuiFileDialog\ImGuiFileDialog.cpp">
+      <Filter>98. Default\ImGuiFileDialog</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

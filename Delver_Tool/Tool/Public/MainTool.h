@@ -28,15 +28,18 @@ private:
 	LPDIRECT3DDEVICE9			m_pGraphic_Device = nullptr;
 	CImgui_Manager*				m_pImgui_Manager = nullptr;
 
-	/*¸ðµ¨*/
-	CVIBuffer_Rect*			m_pVIBufferCom = nullptr;
 
-	/*ÅØ½ºÃÄ*/
-	CTexture*				m_pTextureCom = nullptr;
+#ifdef _DEBUG
+private:
+	_uint					m_iNumRender = 0;
+	_float					m_fTimeAcc = 0.f;
+#endif // _DEBUG
 
 private:
 	HRESULT Ready_RenderState();
 	HRESULT Ready_Prototype_Component_Static();
+
+	void FileTest();
 
 	void Img_Test();
 	bool LoadTextureFromFile(const char* filename, PDIRECT3DTEXTURE9* out_texture, int* out_width, int* out_height);

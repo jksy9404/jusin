@@ -8,6 +8,7 @@
 #include <tchar.h>
 
 #include "MainTool.h"
+#include "GameInstance.h"
 
 // Data
 HWND						g_hWnd;
@@ -33,9 +34,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, _T("ImGui Example"), NULL };
 	::RegisterClassEx(&wc);
 	//HWND
-	g_hWnd = ::CreateWindow(wc.lpszClassName, _T("Delver Tool"), WS_OVERLAPPEDWINDOW, 0, 0, g_iWinSizeX, g_iWinSizeY, NULL, NULL, wc.hInstance, NULL);
+	//Create Window
+	RECT rcWindow = { 0, 0, g_iWinSizeX, g_iWinSizeY };
+	AdjustWindowRect(&rcWindow, WS_OVERLAPPEDWINDOW, TRUE);
+	g_hWnd = ::CreateWindow(wc.lpszClassName, _T("Delver Tool"), WS_OVERLAPPEDWINDOW, 0, 0, rcWindow.right - rcWindow.left, rcWindow.bottom - rcWindow.top, NULL, NULL, wc.hInstance, NULL);
 
-	// Initialize Direct3D
+	// Initialize MainTool
 	CMainTool*	pMainTool = CMainTool::Create();
 	if (nullptr == pMainTool)
 	{
@@ -43,6 +47,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		::UnregisterClass(wc.lpszClassName, wc.hInstance);
 		return 1;
 	}
+
+	// Create Timer
+	if (FAILED(CGameInstance::Get_Instance()->Add_Timer(L"Timer_Default")))
+		return E_FAIL;
+	if (FAILED(CGameInstance::Get_Instance()->Add_Timer(L"Timer_60")))
+		return E_FAIL;
+
+	_float	fTimerAcc = 0.f;
 
 	// Show the window
 	::ShowWindow(g_hWnd, SW_SHOWDEFAULT);
@@ -55,7 +67,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		// Poll and handle messages (inputs, window resize, etc.)
 		// See the WndProc() function below for our to dispatch events to the Win32 backend.
 		MSG msg;
-		while (::PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
+		//if (::PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
+		while(::PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
 		{
 			::TranslateMessage(&msg);
 			::DispatchMessage(&msg);
@@ -65,8 +78,18 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 		if (done)
 			break;
 
-		pMainTool->Tick(0.f);
-		pMainTool->Render();
+		CGameInstance::Get_Instance()->Update_Timer(L"Timer_Default");
+		fTimerAcc += CGameInstance::Get_Instance()->Get_TimeDelta(L"Timer_Default");
+
+		if (fTimerAcc >= 1.f / 60.f)
+		{
+			CGameInstance::Get_Instance()->Update_Timer(L"Timer_60");
+			fTimerAcc = 0.f;
+
+			pMainTool->Tick(CGameInstance::Get_Instance()->Get_TimeDelta(L"Timer_60"));
+			if (FAILED(pMainTool->Render()))
+				return E_FAIL;
+		}
 
 	}
 

@@ -1,3 +1,18 @@
-﻿  Imgui_Manager.cpp
-  Tool.vcxproj -> C:\Users\KHK\Desktop\취업\쥬신\5개월 SR2\jusin\Delver_Tool\Tool\Default\..\Bin\Tool.exe
+﻿  MainTool.cpp
+c:\users\k.h.k\desktop\jusin\srteamproject\jusin\delver_tool\reference\headers\texture.h(27): warning C4251: 'Engine::CTexture::m_Textures': class 'std::vector<LPDIRECT3DBASETEXTURE9,std::allocator<_Ty>>'에서는 class 'Engine::CTexture'의 클라이언트에서 DLL 인터페이스를 사용하도록 지정해야 합니다.
+          with
+          [
+              _Ty=LPDIRECT3DBASETEXTURE9
+          ]
+  c:\users\k.h.k\desktop\jusin\srteamproject\jusin\delver_tool\reference\headers\texture.h(27): note: 'std::vector<LPDIRECT3DBASETEXTURE9,std::allocator<_Ty>>' 선언을 참조하십시오.
+          with
+          [
+              _Ty=LPDIRECT3DBASETEXTURE9
+          ]
+  코드를 생성하고 있습니다...
+  건너뛰고 있습니다... (관련된 변경 내용 없음)
+  main.cpp
+  ImGuiFileDialog.cpp
+  BackGround.cpp
+  Tool.vcxproj -> C:\Users\K.H.K\Desktop\Jusin\SRTeamProject\jusin\Delver_Tool\Tool\Default\..\Bin\Tool.exe
   Tool.vcxproj -> ..\Bin\Tool.pdb (Full PDB)

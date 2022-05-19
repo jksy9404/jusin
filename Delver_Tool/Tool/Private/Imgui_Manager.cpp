@@ -43,7 +43,7 @@ HRESULT CImgui_Manager::NativeConstruct(LPDIRECT3DDEVICE9 pGraphic_Device)
 }
 
 
-void CImgui_Manager::BeginRender()
+void CImgui_Manager::Render_Begin()
 {
 	// Start the Dear ImGui frame
 	ImGui_ImplDX9_NewFrame();
@@ -51,7 +51,7 @@ void CImgui_Manager::BeginRender()
 	ImGui::NewFrame();
 }
 
-void CImgui_Manager::EndRender()
+void CImgui_Manager::Render_End()
 {
 	ImGui::Render();
 	ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());

@@ -1,5 +1,11 @@
 #pragma once
 
+
+#include "imgui.h"
+#include "imgui_impl_dx9.h"
+#include "imgui_impl_win32.h"
+#include "ImGuiFileDialog.h"
+
 #include <SDKDDKVer.h>
 
 #define WIN32_LEAN_AND_MEAN 
@@ -19,7 +25,7 @@ namespace Tool
 	const unsigned int g_iWinSizeY = 720;
 
 
-	enum LEVEL { LEVEL_STATIC, LEVEL_LOGO, LEVEL_GAMEPLAY, LEVEL_LOADING, LEVEL_END };
+	enum LEVEL { LEVEL_STATIC, LEVEL_END };
 }
 
 using namespace Tool;

@@ -3,6 +3,7 @@
 #include "GameInstance.h"
 #include "Texture.h"
 #include "VIBuffer_Rect.h"
+#include "BackGround.h"
 
 CMainTool::CMainTool()
 	: m_pGameInstance(CGameInstance::Get_Instance()),
@@ -34,8 +35,6 @@ HRESULT CMainTool::NativeConstruct()
 	if (FAILED(m_pImgui_Manager->NativeConstruct(m_pGraphic_Device)))
 		return E_FAIL;
 
-
-
 	return S_OK;
 }
 
@@ -44,7 +43,12 @@ void CMainTool::Tick(float fTimeDelta)
 	if (nullptr == m_pGameInstance)
 		return;
 
+#ifdef _DEBUG
+	m_fTimeAcc += fTimeDelta;
+#endif // _DEBUG
+
 	m_pGameInstance->Tick_Engine(fTimeDelta);
+
 }
 
 HRESULT CMainTool::Render()
@@ -52,33 +56,33 @@ HRESULT CMainTool::Render()
 	if (nullptr == m_pGameInstance)
 		return E_FAIL;
 	m_pGameInstance->Render_Begin();
-	
-	_float4x4		WorldMatrix, ViewMatrix, ProjMatrix;
+	m_pImgui_Manager->Render_Begin();
 
-	D3DXMatrixIdentity(&WorldMatrix);
-	m_pGraphic_Device->SetTransform(D3DTS_WORLD, &WorldMatrix);
-
-	D3DXMatrixLookAtLH(&ViewMatrix, &_float3(0.f, 5.f, -4.0f), &_float3(0.f, 0.f, 0.f), &_float3(0.f, 1.f, 0.f));
-	m_pGraphic_Device->SetTransform(D3DTS_VIEW, &ViewMatrix);
-
-	D3DXMatrixPerspectiveFovLH(&ProjMatrix, D3DXToRadian(60.0f), _float(g_iWinSizeX) / g_iWinSizeY, 0.2f, 300.f);
-	m_pGraphic_Device->SetTransform(D3DTS_PROJECTION, &ProjMatrix);
-
-	m_pTextureCom->Bind_Texture(0);
-
-	m_pVIBufferCom->Render();
+	// 엔진 렌더링
+	m_pGameInstance->Render_Engine();
 
 
-	m_pImgui_Manager->BeginRender();
-
-	// 여기서 Imgui 코드 호출해주면 됨
+	// Imgui 렌더링
 	ImGui::ShowDemoWindow();
-	Img_Test();
+	//Img_Test();
+	FileTest();
 
-	// ================================ 
 
-	m_pImgui_Manager->EndRender();
+#ifdef _DEBUG
+	++m_iNumRender;
 
+	_tchar	szFPS[MAX_PATH];
+	if (m_fTimeAcc > 1.f)
+	{
+		wsprintf(szFPS, TEXT("FPS : %d \n"), m_iNumRender);
+		SetWindowText(g_hWnd, szFPS);
+
+		m_fTimeAcc = 0.f;
+		m_iNumRender = 0;
+	}
+#endif
+
+	m_pImgui_Manager->Render_End();
 	m_pGameInstance->Render_End();
 
 	return S_OK;
@@ -103,6 +107,7 @@ HRESULT CMainTool::Ready_RenderState()
 	return S_OK;
 }
 
+
 HRESULT CMainTool::Ready_Prototype_Component_Static()
 {
 	if (nullptr == m_pGameInstance)
@@ -114,19 +119,43 @@ HRESULT CMainTool::Ready_Prototype_Component_Static()
 		return E_FAIL;
 
 	/* Prototype_Component_Texture_Logo */
-	if (FAILED(m_pGameInstance->Add_ComponentPrototype(LEVEL_LOGO, L"Prototype_Component_Texture_Logo",
+	if (FAILED(m_pGameInstance->Add_ComponentPrototype(LEVEL_STATIC, L"Prototype_Component_Texture_Logo",
 		CTexture::Create(m_pGraphic_Device, CTexture::TYPE_DEFAULT, L"../Bin/Resources/Monster.bmp", 1))))
 		return E_FAIL;
 
-	m_pVIBufferCom = (CVIBuffer_Rect*)m_pGameInstance->Clone_Component(LEVEL_STATIC, TEXT("Prototype_Component_VIBuffer_Rect"));
-	if (nullptr == m_pVIBufferCom)
+	/* Prototype_GameObject_BackGround */
+	if (FAILED(m_pGameInstance->Add_ObjectPrototype(L"Prototype_GameObject_BackGround", CBackGround::Create(m_pGraphic_Device))))
 		return E_FAIL;
 
-	m_pTextureCom = (CTexture*)m_pGameInstance->Clone_Component(LEVEL_LOGO, TEXT("Prototype_Component_Texture_Logo"));
-	if (nullptr == m_pVIBufferCom)
+	/* Clone_GameObject_BackGround */
+	if (FAILED(m_pGameInstance->Clone_GameObject(LEVEL_STATIC, L"Layer_BackGround", L"Prototype_GameObject_BackGround")))
 		return E_FAIL;
 
 	return S_OK;
+}
+
+void CMainTool::FileTest()
+{
+	ImGui::Begin("File");
+	// open Dialog Simple
+	if (ImGui::Button("Open File Dialog"))
+		ImGuiFileDialog::Instance()->OpenDialog("ChooseFileDlgKey", "Choose File", ".*", ".");
+
+	// display
+	if (ImGuiFileDialog::Instance()->Display("ChooseFileDlgKey"))
+	{
+		// action if OK
+		if (ImGuiFileDialog::Instance()->IsOk())
+		{
+			std::string filePathName = ImGuiFileDialog::Instance()->GetFilePathName();
+			std::string filePath = ImGuiFileDialog::Instance()->GetCurrentPath();
+			// action
+		}
+		// close
+		ImGuiFileDialog::Instance()->Close();
+	}
+	ImGui::End();
+
 }
 
 
@@ -179,10 +208,6 @@ void CMainTool::Free()
 {
 	__super::Free();
 
-	Safe_Release(m_pTextureCom);
-
-	Safe_Release(m_pVIBufferCom);
-
 	Safe_Release(m_pGameInstance);
 
 	Safe_Release(m_pGraphic_Device);
@@ -192,6 +217,4 @@ void CMainTool::Free()
 	CImgui_Manager::Destroy_Instance();
 
 	CGameInstance::Release_Engine();
-
-	
 }

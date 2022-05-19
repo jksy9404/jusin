@@ -2,9 +2,6 @@
 
 #include "Tool_Defines.h"
 #include "Base.h"
-#include "imgui.h"
-#include "imgui_impl_dx9.h"
-#include "imgui_impl_win32.h"
 
 BEGIN(Tool)
 
@@ -18,8 +15,8 @@ private:
 
 public:
 	HRESULT	NativeConstruct(LPDIRECT3DDEVICE9	pGraphic_Device);
-	void	BeginRender();
-	void	EndRender();
+	void	Render_Begin();
+	void	Render_End();
 
 private:
 	LPDIRECT3DDEVICE9	m_pGraphic_Device = nullptr;
