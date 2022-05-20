@@ -1,1 +1,2 @@
-teststest/
+teststest/.vs/
+teststest/ipch/
