@@ -1,2 +1,3 @@
 teststest/.vs/
 teststest/ipch/
+teststest/Debug/
