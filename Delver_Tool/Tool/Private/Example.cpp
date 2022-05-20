@@ -10,6 +10,7 @@ CExample::CExample()
 
 CExample::~CExample()
 {
+
 	Safe_Release(texture);
 
 	Safe_Release(my_texture);
@@ -24,10 +25,14 @@ HRESULT CExample::NativeConstruct(LPDIRECT3DDEVICE9 pGraphic_Device)
 	m_pGraphic_Device = pGraphic_Device;
 	Safe_AddRef(m_pGraphic_Device);
 
-	bool ret = LoadTextureFromFile("../Bin/Resources/MyImage01.jpg", &my_texture, &my_image_width, &my_image_height);
+	//bool ret = LoadTextureFromFile("../Bin/Resources/MyImage01.jpg", &my_texture, &my_image_width, &my_image_height);
+	//IM_ASSERT(ret);
+	//return S_OK;
+
+	bool ret = LoadTextureFromFile("../Bin/Resources/Monster.bmp", &my_texture, &my_image_width, &my_image_height);
 	IM_ASSERT(ret);
 	return S_OK;
-
+	
 }
 
 void CExample::Render()
@@ -46,7 +51,8 @@ void CExample::Render()
 		CreateImageButton();
 		//마우스 위치 얻기
 		GetMousePos();
-
+		// File Dialog띄우기
+		OpenFileDialog();
 	}
 }
 
@@ -93,7 +99,7 @@ void CExample::CreateImg()
 
 	float x = 0.f;
 	//ImGui::DragFloat("X Pos", &x);
-	ImGui::Image((void*)my_texture, ImVec2((float)my_image_width * 0.5f, (float)my_image_height * 0.5f));
+	ImGui::Image((void*)my_texture, ImVec2(32, 32), ImVec2(0, 0), ImVec2(0.0625f, 0.125f));
 	ImGui::End();
 }
 
@@ -103,7 +109,7 @@ void CExample::CreateImageButton()
 
 	ImGui::Text("< Create ImageButton >");
 
-	if (ImGui::ImageButton((void*)my_texture, ImVec2((float)my_image_width * 0.5f, (float)my_image_height* 0.5f)))
+	if (ImGui::ImageButton((void*)my_texture, ImVec2(32,32), ImVec2(0.0625f *(imageButtonClick_Count - 1)  ,0), ImVec2(0.0625f *imageButtonClick_Count, 0.125f)))
 		imageButtonClick_Count++;
 
 	ImGui::Text("ClickCount = %d", imageButtonClick_Count);
@@ -115,20 +121,11 @@ void CExample::GetMousePos()
 {
 	ImGui::Begin("Get MousePos");
 
-	//ImVec2 mousePos = ImGui::GetMousePos();
-	//ImVec2 mousePos = ImGui::GetMousePosOnOpeningCurrentPopup();
-	//ImGuiIO& io = ImGui::GetIO();
-
 	ImVec2  screenMousePos = ImGui::GetMousePosOnOpeningCurrentPopup();
 	ImVec2 mainViewPos = ImGui::GetMainViewport()->Pos;
-	//벡터연산이안되네,,
 	float getDistance_x = fabs(screenMousePos.x - mainViewPos.x);
 	float getDistance_y = fabs(screenMousePos.y - mainViewPos.y);
 
-	//io.MousePos.x;
-	//ImGui::GetCursorScreenPos().x
-	//ImGui::GetMousePosOnOpeningCurrentPopup()
-	//ImGui::Text("x : %1.f, y : %1.f", mousePos.x , mousePos.y);
 	ImGui::Text("mainViewPos_x : %1.f, mainViewPos_y : %1.f", mainViewPos.x, mainViewPos.y);
 	ImGui::Text("screenMousePos_x : %1.f, screenMousePos_y : %1.f", screenMousePos.x, screenMousePos.y);
 
@@ -136,6 +133,34 @@ void CExample::GetMousePos()
 
 	ImGui::Text("MainViewMousePos_x : %1.f", screenMousePos.x - mainViewPos.x);
 	ImGui::Text("MainViewMousePos_y : %1.f", screenMousePos.y - mainViewPos.y);
+
+	ImGui::End();
+}
+
+void CExample::OpenFileDialog()
+{
+	ImGui::Begin("OPen File Dialog");
+
+	if (ImGui::Button("OPen File Dialog"))
+	{
+		OPENFILENAME ofn;
+		::memset(&ofn, 0, sizeof(ofn));
+		
+		m_fileName[0] = 0;
+		ofn.lStructSize = sizeof(ofn);
+		ofn.nFilterIndex = 2;
+		ofn.nMaxFile = MAX_PATH;
+		ofn.lpstrFile = m_fileName;
+		ofn.Flags = OFN_FILEMUSTEXIST;
+		if (::GetOpenFileName(&ofn) != FALSE)
+			WideCharToMultiByte(CP_ACP, 0, m_fileName, len, ctemp, len, NULL, NULL);//tchar->char
+	}
+	if (ctemp == nullptr)
+	{
+		ImGui::End();
+		return;
+	}
+	ImGui::Text(ctemp);
 
 	ImGui::End();
 }

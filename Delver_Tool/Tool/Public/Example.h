@@ -20,8 +20,9 @@ public:
 	void CreateImg();
 	void CreateImageButton();
 	void GetMousePos();
+	void OpenFileDialog();
 	bool LoadTextureFromFile(const char* filename, PDIRECT3DTEXTURE9* out_texture, int* out_width, int* out_height);
-
+	
 private:
 	bool Circlefov = false;
 	bool Rectfov = false;
@@ -37,5 +38,9 @@ private:
 	LPDIRECT3DTEXTURE9 my_texture = NULL;
 	LPDIRECT3DTEXTURE9 texture = NULL;
 	int imageButtonClick_Count = 0;
+
+	TCHAR m_fileName[MAX_PATH];
+	char ctemp[256];
+	int len = 256;
 };
 
